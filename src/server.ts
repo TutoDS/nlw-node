@@ -1,6 +1,5 @@
-import { server } from './configs/environment';
 import { app } from './app';
 
-app.listen(server.port, () => {
-	console.log('[SERVER START]');
+app.listen(3333, () => {
+	console.log(`SERVER START IN 3333`);
 });

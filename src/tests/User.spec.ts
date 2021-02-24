@@ -1,11 +1,11 @@
 import request from 'supertest';
 import { app } from '../app';
 
-import createConnection from '../database';
+import { create } from '../database';
 
 describe('Users', () => {
 	beforeAll(async () => {
-		const connection = await createConnection();
+		const connection = await create();
 
 		await connection.runMigrations();
 	});

@@ -1,0 +1,30 @@
+import request from 'supertest';
+import { app } from '../app';
+
+import { create } from '../database';
+
+describe('Surveys', () => {
+	beforeAll(async () => {
+		const connection = await create();
+
+		await connection.runMigrations();
+	});
+
+	it('Should be able to create a new survey', async () => {
+		const response = await request(app)
+			.post('/api/surveys') // Route to test
+			.send({
+				// Data to send
+				title: 'Title of Survey',
+				description: 'Description of Survey',
+			});
+
+		expect(response.status).toBe(201);
+	});
+
+	it('Should be able to get all surveys', async () => {
+		const response = await request(app).get('/api/surveys'); // Route to test
+
+		expect(response.status).toBe(200);
+	});
+});

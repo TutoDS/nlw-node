@@ -3,13 +3,12 @@ import { Request, Response } from 'express';
 import { SurveysRepository } from '../repositories/SurveysRepository';
 class SurveysController {
 	async create(req: Request, res: Response) {
-		const body = req.body;
+		const { title, description } = req.body;
 
-		const surveysRepository = getCustomRepository(SurveysRepository);
+		const repository = getCustomRepository(SurveysRepository);
 
-		const survey = surveysRepository.create(body);
-
-		await surveysRepository.save(survey);
+		const survey = repository.create({ title, description });
+		await repository.save(survey);
 
 		return res.status(201).json({
 			message: 'Survey created with success!',
