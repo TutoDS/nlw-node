@@ -15,3 +15,7 @@
 -   Add **Husky _Hooks_** to run **Prettier** and format code in _pre-commit_ **<small>(classe 1 - 22/02/21)</small>**;
 -   Custom structure in `src/routes` **<small>(classe 1 - 22/02/21)</small>**;
     -   **Note:** I use on file per controller, example: `UserController` I have `users.routes`, where `users.routes` contains all routes related with users.
+
+<h3 style="font-weight: 300">Problems with Husky Hooks</h3>
+
+If **Husky _Hook_** pre-commit not working, try run this command: `npx mrm lint-staged `
