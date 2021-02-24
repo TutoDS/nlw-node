@@ -8,9 +8,8 @@
 <h2 style="font-weight:300">Commands:</h2>
 
 - `yarn dev`: Start server in dev. mode;
--
-
 
 <h2 style="font-weight: 300">Changes:</h2>
 
--
+- Use `.env` file to set server port <small>(classe 1 - 22/02/21)</small>;
+- Create `environment.ts` file (in `/src/configs`) to access data from `.env` file <small>(classe 1 - 22/02/21)</small>;
