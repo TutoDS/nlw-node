@@ -15,10 +15,22 @@ describe('Users', () => {
 			.post('/api/users') // Route to test
 			.send({
 				// Data to send
-				name: 'Joaquim Sousa',
+				name: 'Daniel Sousa',
 				email: 'exemplo@email.com',
 			});
 
 		expect(response.status).toBe(201);
+	});
+
+	it('Should not be able to create a new user with email already exists', async () => {
+		const response = await request(app)
+			.post('/api/users') // Route to test
+			.send({
+				// Data to send
+				name: 'Daniel Sousa',
+				email: 'exemplo@email.com',
+			});
+
+		expect(response.status).toBe(400);
 	});
 });
