@@ -30,5 +30,6 @@ describe('Surveys', () => {
 		const response = await request(app).get('/api/surveys'); // Route to test
 
 		expect(response.status).toBe(200);
+		expect(response.body).toHaveProperty('count');
 	});
 });
