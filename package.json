@@ -38,6 +38,10 @@
 		"*.{js,ts,json,scss,css,html,tsx,jsx}": [
 			"prettier --write .",
 			"git add ."
+		],
+		"*.{hbs}": [
+			"prettier '**/*.hbs' --parser glimmer --write",
+			"git add ."
 		]
 	},
 	"husky": {

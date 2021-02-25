@@ -1,4 +1,7 @@
+import fs from 'fs';
+import handlebars from 'handlebars';
 import nodemailer, { Transporter } from 'nodemailer';
+
 class SendMailService {
 	private transporter: Transporter;
 
@@ -21,15 +24,26 @@ class SendMailService {
 			});
 	}
 
-	async execute(to: string, subject: string, body: string) {
+	async execute(
+		to: string,
+		subject: string,
+		variables: object,
+		path: string
+	) {
+		const templateContent = fs.readFileSync(path).toString('utf-8');
+
+		const mailTemplateParse = handlebars.compile(templateContent);
+
+		const html = mailTemplateParse(variables);
+
 		const message = await this.transporter.sendMail({
 			from: `NPS <noreplay@nps.test>`,
 			to,
 			subject,
-			html: body,
+			html: html,
 		});
 
-		console.log(nodemailer.getTestMessageUrl(message));
+		console.log(nodemailer.getTestMessageUrl(message)); // To see email in Ethereal
 	}
 }
 

@@ -1,3 +1,5 @@
+import { server } from './../configs/environment';
+import { resolve } from 'path';
 import { getCustomRepository } from 'typeorm';
 import { Request, Response } from 'express';
 import { UsersRepository } from '../repositories/UsersRepository';
@@ -21,27 +23,63 @@ class SendMailController {
 					.findOne(survey_id)
 					.then(async (survey) => {
 						// Survey founded
-						const surveyUser = repository.create({
-							user_id: user.id,
-							survey_id: survey.id,
-						});
 
-						await repository.save(surveyUser);
-
-						await SendMailService.execute(
-							email,
-							survey.title,
-							survey.description
+						const emailPath = resolve(
+							__dirname,
+							'..',
+							'views',
+							'emails',
+							'survey.hbs'
 						);
 
-						return res.status(201).json({
-							message: 'Survey email has send with success!',
-							code: 201,
-							info: {
-								email: user.email,
-								survey: survey.title,
-							},
+						const variables = {
+							name: user.name,
+							title: survey.title,
+							description: survey.description,
+							route: server.emailUrl,
+							user_id: user.id,
+						};
+
+						const foundedResults = await repository.findOne({
+							where: [{ user_id: user.id }, { value: null }],
 						});
+
+						if (foundedResults) {
+							await SendMailService.execute(
+								email,
+								survey.title,
+								variables,
+								emailPath
+							);
+
+							return res.status(200).json({
+								message: 'Survey email has send with success',
+								code: 200,
+								info: foundedResults,
+							});
+						} else {
+							const surveyUser = repository.create({
+								user_id: user.id,
+								survey_id: survey.id,
+							});
+
+							const newSurveyUser = await repository.save(
+								surveyUser
+							);
+
+							await SendMailService.execute(
+								email,
+								survey.title,
+								variables,
+								emailPath
+							);
+
+							return res.status(201).json({
+								message: 'Survey email has send with success!',
+								code: 201,
+								info: newSurveyUser,
+							});
+						}
 					})
 					.catch((error) => {
 						// Survey not found
