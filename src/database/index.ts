@@ -7,7 +7,7 @@ async function create(): Promise<Connection> {
 		Object.assign(defaultOptions, {
 			database:
 				process.env.NODE_ENV === 'test'
-					? './src/database/database.test.sqlite'
+					? './src/database/database.tests.sqlite'
 					: defaultOptions.database,
 		})
 	);

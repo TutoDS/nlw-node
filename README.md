@@ -12,7 +12,7 @@
 -   Use `.env` file to set server port **<small>(classe 1 - 22/02/21)</small>**;
     -   **Note:** `.env.example` contains an example of `.env` file.
 -   Create `environment.ts` file (in `/src/configs`) to access data from `.env` file **<small>(classe 1 - 22/02/21)</small>**;
--   Add **Husky _Hooks_** to run **Prettier** and format code in _pre-commit_ **<small>(classe 1 - 22/02/21)</small>**;
+-   Add **Husky _Hooks_** to run **Prettier** and format code in _pre-commit_ **<small>(classe 2 - 23/02/21)</small>**;
 -   Custom structure in `src/routes` **<small>(classe 1 - 22/02/21)</small>**;
     -   **Note:** I use on file per controller, example: `UserController` I have `users.routes`, where `users.routes` contains all routes related with users.
 -   Use `.spec.ts` for tests files **<small>(classe 3 - 24/02/21)</small>**;

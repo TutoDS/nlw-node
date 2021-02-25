@@ -7,7 +7,11 @@ describe('Users', () => {
 	beforeAll(async () => {
 		const connection = await create();
 
-		await connection.runMigrations();
+		try {
+			await connection.runMigrations();
+		} catch (error) {
+			console.log('Already have migrations!');
+		}
 	});
 
 	it('Should be able to create a new user', async () => {
