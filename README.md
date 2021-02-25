@@ -21,8 +21,15 @@
     -   **Note:** I use on file per controller, example: `UserController` I have `users.routes`, where `users.routes` contains all routes related with users.
 -   Use `.spec.ts` for tests files **<small>(classe 3 - 24/02/21)</small>**;
 -   Validate if already exists _migrations_ on **Jest** Tests **<small>(classe 3 - 24/02/21)</small>**; - **Code:**
-    `ts try { await connection.runMigrations(); } catch (error) { console.log('Already have migrations!'); } `
-    <br />
+    ```ts
+	try {
+		await connection.runMigrations();
+	} catch (error) {
+		console.log('Already have migrations!');
+	}
+	 ```
+
+<br />
 
 <h3 style="font-weight: 300">Problems with Husky Hooks</h3>
 
