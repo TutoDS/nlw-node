@@ -7,7 +7,20 @@
 
 <h2 style="font-weight:300">Commands:</h2>
 
--   `yarn dev`: Start server in dev. mode;
+-   **`yarn dev`:** Start server in dev. mode;
+
+<div style="margin: 5px 0" />
+
+-   **`yarn test`:** Run all **Jest** tests;
+
+    -   **Note:** in `jest.config.ts` you need specify where you have tests files, in my case:
+
+    ```ts
+    testMatch: [
+    	'**/tests/*.tests.ts',
+    	'**/tests/*.spec.ts',
+    ],
+    ```
 
 <br />
 
