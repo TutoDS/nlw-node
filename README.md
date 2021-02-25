@@ -60,3 +60,8 @@
 <h3 style="font-weight: 300">Problems with Husky Hooks</h3>
 
 If **Husky _Hook_** pre-commit not working, try run this command: `npx mrm lint-staged `
+
+<div align="right" style="margin-top: 50px">
+	<h6 style="text-transform: uppercase; color: #434343">Have interest in:</h6>
+	<a href="https://github.com/TutoDS/nlw04-react" target="_blank"><img src="https://img.shields.io/badge/react%20NLW4%20Rocketseat%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="React"/></a>
+</div>
