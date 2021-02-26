@@ -1,3 +1,4 @@
+import { getConnection } from 'typeorm';
 import request from 'supertest';
 import { app } from '../app';
 
@@ -12,6 +13,12 @@ describe('Surveys', () => {
 		} catch (error) {
 			console.log('Already have migrations!');
 		}
+	});
+
+	afterAll(async () => {
+		const connection = getConnection();
+		await connection.dropDatabase();
+		await connection.close();
 	});
 
 	it('Should be able to create a new survey', async () => {

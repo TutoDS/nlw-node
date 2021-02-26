@@ -8,10 +8,13 @@ class UserController {
 		const { name, email } = req.body;
 
 		const schema = yup.object().shape({
-			name: yup.string().required('Name field is required!'),
+			name: yup
+				.string()
+				.required('Name field is required!')
+				.min(3, 'Please enter a name with 3 or more characters.'),
 			email: yup
 				.string()
-				.email('Please enter a valid email!')
+				.email('Please enter a valid email.')
 				.required('Email field is required!'),
 		});
 

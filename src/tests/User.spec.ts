@@ -1,4 +1,5 @@
 import request from 'supertest';
+import { getConnection } from 'typeorm';
 import { app } from '../app';
 
 import { create } from '../database';
@@ -12,6 +13,12 @@ describe('Users', () => {
 		} catch (error) {
 			console.log('Already have migrations!');
 		}
+	});
+
+	afterAll(async () => {
+		const connection = getConnection();
+		await connection.dropDatabase();
+		await connection.close();
 	});
 
 	it('Should be able to create a new user', async () => {
