@@ -8,8 +8,11 @@ class UserController {
 		const { name, email } = req.body;
 
 		const schema = yup.object().shape({
-			name: yup.string().required(),
-			email: yup.string().email().required(),
+			name: yup.string().required('Name field is required!'),
+			email: yup
+				.string()
+				.email('Please enter a valid email!')
+				.required('Email field is required!'),
 		});
 
 		try {
@@ -30,9 +33,6 @@ class UserController {
 				errors: errors,
 			});
 		}
-
-		// if (!(await schema.isValid(req.body))) {
-		// }
 
 		const usersRepository = getCustomRepository(UsersRepository);
 
