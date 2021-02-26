@@ -43,7 +43,7 @@ class NpsController {
 				code: 200,
 				survey: data,
 				numberOfResponses: data.length,
-				nps,
+				nps: `${nps}%`,
 				passives: {
 					label: 'Answer between 7 and 8',
 					count: passives.length,
