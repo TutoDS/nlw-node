@@ -26,7 +26,7 @@
 
 <h2 style="font-weight: 300">Changes:</h2>
 
-- Use `/api` in base url for all routes **<small>(classe 1 - 22/02/21)</small>**;
+-   Use `/api` in base url for all routes **<small>(classe 1 - 22/02/21)</small>**;
 
 <div style="margin: 5px 0" />
 
