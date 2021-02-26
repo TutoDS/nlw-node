@@ -34,9 +34,10 @@ class NpsController {
 				(survey) => survey.value >= 7 && survey.value <= 8
 			);
 
-			const nps =
+			const nps = Number(
 				((promoters.length - detractors.length) / Number(data.length)) *
-				100;
+					100
+			).toFixed(2);
 
 			return res.status(200).json({
 				code: 200,
