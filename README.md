@@ -59,6 +59,10 @@
     }
     ```
 
+<div style="margin: 5px 0" />
+
+-   Capitalize errors from **YUP** package **<small>(classe 5 - 26/02/21)</small>**.
+
 <br />
 
 <h3 style="font-weight: 300">Problems with Husky Hooks</h3>
