@@ -21,7 +21,6 @@ class NpsController {
 			survey_id: survey,
 			value: Not(IsNull()),
 		});
-		console.log(data);
 		if (data) {
 			const detractors = data.filter(
 				(survey) => survey.value <= 0 && survey.value <= 6
