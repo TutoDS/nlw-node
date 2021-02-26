@@ -28,8 +28,6 @@ class UserController {
 				return error;
 			});
 
-			console.log(errors);
-
 			return res.status(400).json({
 				code: 400,
 				message: 'Validation failed! Please verify all fields',
