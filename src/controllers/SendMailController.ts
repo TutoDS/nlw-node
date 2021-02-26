@@ -29,20 +29,22 @@ class SendMailController {
 					'survey.hbs'
 				);
 
+				const foundedResults = await repository.findOne({
+					where: { user_id: user.id, value: null },
+					relations: ['user', 'survey'],
+				});
+
 				const variables = {
 					name: user.name,
 					title: survey.title,
 					description: survey.description,
 					route: server.emailUrl,
-					user_id: user.id,
+					id: '',
 				};
 
-				const foundedResults = await repository.findOne({
-					where: [{ user_id: user.id }, { value: null }],
-					relations: ['user', 'survey'],
-				});
-
 				if (foundedResults) {
+					variables.id = foundedResults.id;
+
 					await SendMailService.execute(
 						email,
 						survey.title,
@@ -62,6 +64,8 @@ class SendMailController {
 					});
 
 					const newSurveyUser = await repository.save(surveyUser);
+
+					variables.id = newSurveyUser.id;
 
 					await SendMailService.execute(
 						email,

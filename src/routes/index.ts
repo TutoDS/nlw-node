@@ -12,8 +12,8 @@ routes
 	.get('/', (req: Request, res: Response) => {
 		return res.json({ status: 'API is working' });
 	})
-	.get('/answers', answerController.execute)
 	.use('/users', userRoutes)
-	.use('/surveys', surveyRoutes);
+	.use('/surveys', surveyRoutes)
+	.get('/answers/:value', answerController.execute);
 
 export default routes;

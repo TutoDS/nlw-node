@@ -4,7 +4,7 @@
 	"main": "src/server.ts",
 	"license": "MIT",
 	"scripts": {
-		"dev": "NODE_ENV=dev ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
+		"dev": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
 		"typeorm": "ts-node-dev node_modules/typeorm/cli.js",
 		"test": "NODE_ENV=test jest",
 		"posttest": "rm -rf ./src/database/database.tests.sqlite"
