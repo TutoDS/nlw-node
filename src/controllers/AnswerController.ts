@@ -1,6 +1,7 @@
 import { getCustomRepository } from 'typeorm';
 import { Request, Response } from 'express';
 import { SurveysUsersRepository } from '../repositories/SurveysUsersRepository';
+import { AppError } from '../errors/AppError';
 class AnswerController {
 	async execute(req: Request, res: Response) {
 		const { value } = req.params;
@@ -10,21 +11,18 @@ class AnswerController {
 
 		const result = await repository.findOne({ id: String(id) });
 
-		if (result) {
-			result.value = Number(value);
-			await repository.save(result);
-
-			return res.status(200).json({
-				code: 200,
-				message: 'Your opinion has saved with success',
-				survey: result,
-			});
-		} else {
-			return res.status(404).json({
-				code: 404,
-				message: 'Survey user not found!',
-			});
+		if (!result) {
+			throw new AppError('Survey user not found', 404);
 		}
+
+		result.value = Number(value);
+		await repository.save(result);
+
+		return res.status(200).json({
+			code: 200,
+			message: 'Your opinion has saved with success',
+			survey: result,
+		});
 	}
 }
 
